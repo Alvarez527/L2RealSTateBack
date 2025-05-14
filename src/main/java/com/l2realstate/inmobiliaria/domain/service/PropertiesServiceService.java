@@ -22,13 +22,13 @@ public class PropertiesServiceService {
         return propertiesServiceRepository.getAll();
     }
 
-    public Optional<List<com.l2realstate.inmobiliaria.domain.Service>> getServicesByProperty(int propertyId){
+    public Optional<List<Integer>> getServicesByProperty(int propertyId){
 
 
         if(propertiesServiceRepository.findByPropertyPropertyId(propertyId).isPresent()){
 
-            List<com.l2realstate.inmobiliaria.domain.Service> services =   propertiesServiceRepository.findByPropertyPropertyId(propertyId).get().stream()
-                    .map(PropertiesService::getService)
+            List<Integer> services =   propertiesServiceRepository.findByPropertyPropertyId(propertyId).get().stream()
+                    .map(PropertiesService::getServiceId)
                     .toList();
 
             return Optional.of(services);

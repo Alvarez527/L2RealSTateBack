@@ -5,6 +5,7 @@ import com.l2realstate.inmobiliaria.domain.Service;
 import com.l2realstate.inmobiliaria.domain.repository.PropertiesServiceRepository;
 import com.l2realstate.inmobiliaria.persistence.crud.InmueblesServicioCrudRepository;
 import com.l2realstate.inmobiliaria.persistence.entity.InmueblesServicio;
+import com.l2realstate.inmobiliaria.persistence.entity.InmueblesServicioPK;
 import com.l2realstate.inmobiliaria.persistence.entity.Servicio;
 import com.l2realstate.inmobiliaria.persistence.mapper.PropertiesServiceMapper;
 import com.l2realstate.inmobiliaria.persistence.mapper.ServiceMapper;
@@ -29,6 +30,7 @@ public class InmueblesServicioRepository implements PropertiesServiceRepository 
         return propertiesServiceMapper.toPropertiesServices(inmueblesServicios);
 
     }
+
 
     @Override
     public Optional<List<PropertiesService>> findByPropertyPropertyId(int propertyId) {

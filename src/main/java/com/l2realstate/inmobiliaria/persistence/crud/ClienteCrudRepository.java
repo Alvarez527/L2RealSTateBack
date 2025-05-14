@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public interface ClienteCrudRepository extends CrudRepository<Cliente, Integer>{
 
-    public Optional<Cliente> findBynombreCliente(String nombreCliente);
+
+    public Optional<Cliente> findByNombreCliente(String nombreCliente);
 }
 

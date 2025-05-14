@@ -12,6 +12,7 @@ public class InmueblesServicio {
     @Column(name="descripcion_servicio")
     private String descripcionServicio;
 
+
     @ManyToOne
     @JoinColumn(name = "id_inmueble", insertable = false, updatable = false)
     private Inmueble inmueble;

@@ -40,10 +40,10 @@ public class PropertiesServiceController {
     @Operation(summary = "To get a Property-Service Relation", description = "To get a Property-Service Relation")
     @ApiResponse(responseCode = "200", description = "Ok, Information Found")
     @ApiResponse(responseCode = "404", description = "Error, information not found")
-    public ResponseEntity<List<Service>> getAllServicesByProperty(@Parameter(description = "Receives the id of the Property-Service Relation to search")@PathVariable int propertyId){
+    public ResponseEntity<List<Integer>> getAllServicesByProperty(@Parameter(description = "Receives the id of the Property-Service Relation to search")@PathVariable int propertyId){
 
         if(propertiesServiceService.getServicesByProperty(propertyId).isPresent()){
-            List<Service> resultado = propertiesServiceService.getServicesByProperty(propertyId).get();
+            List<Integer> resultado = propertiesServiceService.getServicesByProperty(propertyId).get();
             if (resultado.isEmpty()){
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }else{

@@ -15,6 +15,15 @@ public class InmueblesServicioPK implements Serializable {
     @Column(name="id_servicio")
     private Integer idServicio;
 
+    // Constructor vacío
+    public InmueblesServicioPK() {}
+
+    // Constructor con todos los campos
+    public InmueblesServicioPK(Integer idInmueble, Integer idServicio) {
+        this.idInmueble = idInmueble;
+        this.idServicio = idServicio;
+    }
+
     public Integer getIdInmueble() {
         return idInmueble;
     }

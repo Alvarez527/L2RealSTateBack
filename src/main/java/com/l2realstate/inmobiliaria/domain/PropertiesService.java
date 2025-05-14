@@ -5,9 +5,9 @@ public class PropertiesService {
 
     private String serviceDescription;
 
-    private Service service;
+    private int serviceId;
 
-    private Property property;
+    private int propertyId;
 
     public String getServiceDescription() {
         return serviceDescription;
@@ -17,20 +17,20 @@ public class PropertiesService {
         this.serviceDescription = serviceDescription;
     }
 
-    public Service getService() {
-        return service;
+    public int getServiceId() {
+        return serviceId;
     }
 
-    public void setService(Service service) {
-        this.service = service;
+    public void setServiceId(int serviceId) {
+        this.serviceId = serviceId;
     }
 
-    public Property getProperty() {
-        return property;
+    public int getPropertyId() {
+        return propertyId;
     }
 
-    public void setProperty(Property property) {
-        this.property = property;
+    public void setPropertyId(int propertyId) {
+        this.propertyId = propertyId;
     }
 }
 

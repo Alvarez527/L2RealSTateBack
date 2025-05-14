@@ -34,7 +34,7 @@ public class ColoniaRepository implements ResidentialRepository {
     @Override
     public Optional<Residential> getResidentialByName(String residential) {
 
-        return coloniaCrudRepository.findByColonia(residential).map(a -> residentialMapper.toResidential(a));
+        return coloniaCrudRepository.findColoniaByColonia(residential).map(a -> residentialMapper.toResidential(a));
     }
 
     @Override

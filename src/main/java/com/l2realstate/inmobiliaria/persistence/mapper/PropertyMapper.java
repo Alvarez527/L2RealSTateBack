@@ -39,9 +39,11 @@ public interface PropertyMapper {
     public Property toProperty(Inmueble inmueble);
     public List<Property> toProperties(List<Inmueble> inmuebles);
 
+
     @InheritInverseConfiguration
     public Inmueble toInmueble(Property property);
     public List<Inmueble> toInmuebles(List<Property> properties);
+
 
 }
 

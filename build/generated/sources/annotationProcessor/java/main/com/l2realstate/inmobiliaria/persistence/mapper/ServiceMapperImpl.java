@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-08-31T20:43:55-0600",
+    date = "2025-05-14T09:04:03-0600",
     comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.8.jar, environment: Java 17.0.11 (Amazon.com Inc.)"
 )
 @Component
@@ -46,17 +46,17 @@ public class ServiceMapperImpl implements ServiceMapper {
     }
 
     @Override
-    public Servicio toServicio(Service servicio) {
-        if ( servicio == null ) {
+    public Servicio toServicio(Service service) {
+        if ( service == null ) {
             return null;
         }
 
-        Servicio servicio1 = new Servicio();
+        Servicio servicio = new Servicio();
 
-        servicio1.setIdServicio( servicio.getServiceId() );
-        servicio1.setServicio( servicio.getService() );
+        servicio.setIdServicio( service.getServiceId() );
+        servicio.setServicio( service.getService() );
 
-        return servicio1;
+        return servicio;
     }
 
     @Override

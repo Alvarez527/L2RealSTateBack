@@ -2,24 +2,19 @@ package com.l2realstate.inmobiliaria.persistence.mapper;
 
 import com.l2realstate.inmobiliaria.domain.PropertiesService;
 import com.l2realstate.inmobiliaria.persistence.entity.InmueblesServicio;
+import com.l2realstate.inmobiliaria.persistence.entity.InmueblesServicioPK;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-08-31T20:43:56-0600",
+    date = "2025-05-14T09:04:03-0600",
     comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.8.jar, environment: Java 17.0.11 (Amazon.com Inc.)"
 )
 @Component
 public class PropertiesServiceMapperImpl implements PropertiesServiceMapper {
-
-    @Autowired
-    private PropertyMapper propertyMapper;
-    @Autowired
-    private ServiceMapper serviceMapper;
 
     @Override
     public PropertiesService toPropertiesService(InmueblesServicio inmueblesServicio) {
@@ -30,8 +25,14 @@ public class PropertiesServiceMapperImpl implements PropertiesServiceMapper {
         PropertiesService propertiesService = new PropertiesService();
 
         propertiesService.setServiceDescription( inmueblesServicio.getDescripcionServicio() );
-        propertiesService.setProperty( propertyMapper.toProperty( inmueblesServicio.getInmueble() ) );
-        propertiesService.setService( serviceMapper.toService( inmueblesServicio.getServicio() ) );
+        Integer idInmueble = inmueblesServicioIdIdInmueble( inmueblesServicio );
+        if ( idInmueble != null ) {
+            propertiesService.setPropertyId( idInmueble );
+        }
+        Integer idServicio = inmueblesServicioIdIdServicio( inmueblesServicio );
+        if ( idServicio != null ) {
+            propertiesService.setServiceId( idServicio );
+        }
 
         return propertiesService;
     }
@@ -58,15 +59,14 @@ public class PropertiesServiceMapperImpl implements PropertiesServiceMapper {
 
         InmueblesServicio inmueblesServicio = new InmueblesServicio();
 
+        inmueblesServicio.setId( propertiesServiceToInmueblesServicioPK( propertiesService ) );
         inmueblesServicio.setDescripcionServicio( propertiesService.getServiceDescription() );
-        inmueblesServicio.setInmueble( propertyMapper.toInmueble( propertiesService.getProperty() ) );
-        inmueblesServicio.setServicio( serviceMapper.toServicio( propertiesService.getService() ) );
 
         return inmueblesServicio;
     }
 
     @Override
-    public List<InmueblesServicio> toInmueblesServicios(List<PropertiesService> propertiesServices) {
+    public List<InmueblesServicio> toInmuebleServicios(List<PropertiesService> propertiesServices) {
         if ( propertiesServices == null ) {
             return null;
         }
@@ -77,5 +77,48 @@ public class PropertiesServiceMapperImpl implements PropertiesServiceMapper {
         }
 
         return list;
+    }
+
+    private Integer inmueblesServicioIdIdInmueble(InmueblesServicio inmueblesServicio) {
+        if ( inmueblesServicio == null ) {
+            return null;
+        }
+        InmueblesServicioPK id = inmueblesServicio.getId();
+        if ( id == null ) {
+            return null;
+        }
+        Integer idInmueble = id.getIdInmueble();
+        if ( idInmueble == null ) {
+            return null;
+        }
+        return idInmueble;
+    }
+
+    private Integer inmueblesServicioIdIdServicio(InmueblesServicio inmueblesServicio) {
+        if ( inmueblesServicio == null ) {
+            return null;
+        }
+        InmueblesServicioPK id = inmueblesServicio.getId();
+        if ( id == null ) {
+            return null;
+        }
+        Integer idServicio = id.getIdServicio();
+        if ( idServicio == null ) {
+            return null;
+        }
+        return idServicio;
+    }
+
+    protected InmueblesServicioPK propertiesServiceToInmueblesServicioPK(PropertiesService propertiesService) {
+        if ( propertiesService == null ) {
+            return null;
+        }
+
+        InmueblesServicioPK inmueblesServicioPK = new InmueblesServicioPK();
+
+        inmueblesServicioPK.setIdInmueble( propertiesService.getPropertyId() );
+        inmueblesServicioPK.setIdServicio( propertiesService.getServiceId() );
+
+        return inmueblesServicioPK;
     }
 }

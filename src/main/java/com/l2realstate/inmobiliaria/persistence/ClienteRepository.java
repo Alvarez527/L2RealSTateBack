@@ -37,7 +37,7 @@ public class ClienteRepository implements CustomerRepository {
     @Override
     public Optional<Customer> getCustomerByName(String name) {
 
-        return clienteCrudRepository.findBynombreCliente(name).map(a -> customerMapper.toCustomer(a));
+        return clienteCrudRepository.findByNombreCliente(name).map(a -> customerMapper.toCustomer(a));
     }
 
     @Override
