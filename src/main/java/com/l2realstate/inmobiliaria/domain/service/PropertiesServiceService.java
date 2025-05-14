@@ -1,7 +1,9 @@
 package com.l2realstate.inmobiliaria.domain.service;
 
 import com.l2realstate.inmobiliaria.domain.PropertiesService;
+import com.l2realstate.inmobiliaria.domain.SalesPerson;
 import com.l2realstate.inmobiliaria.domain.repository.PropertiesServiceRepository;
+import com.l2realstate.inmobiliaria.domain.repository.ServiceRepository;
 import com.l2realstate.inmobiliaria.persistence.entity.InmueblesServicio;
 import com.l2realstate.inmobiliaria.persistence.entity.Servicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ public class PropertiesServiceService {
     @Autowired
     PropertiesServiceRepository propertiesServiceRepository;
 
+
     public List<PropertiesService> getAll(){
 
         return propertiesServiceRepository.getAll();
@@ -27,7 +30,9 @@ public class PropertiesServiceService {
 
         if(propertiesServiceRepository.findByPropertyPropertyId(propertyId).isPresent()){
 
-            List<Integer> services =   propertiesServiceRepository.findByPropertyPropertyId(propertyId).get().stream()
+            List<Integer> services =   propertiesServiceRepository.findByPropertyPropertyId(propertyId)
+                    .get()
+                    .stream()
                     .map(PropertiesService::getServiceId)
                     .toList();
 

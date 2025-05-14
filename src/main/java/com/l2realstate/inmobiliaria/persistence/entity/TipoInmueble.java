@@ -10,7 +10,7 @@ public class TipoInmueble {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_tipodeinmueble")
+    @Column(name="id_tipos_de_inmueble")
 
     private Integer idTipoInmueble;
 

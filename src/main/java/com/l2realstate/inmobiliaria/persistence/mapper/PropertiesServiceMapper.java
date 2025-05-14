@@ -21,7 +21,6 @@ public interface PropertiesServiceMapper {
 
     @Mappings({
 
-                    @Mapping(source="descripcionServicio", target="serviceDescription"),
                     @Mapping(source="id.idInmueble", target="propertyId"),
                     @Mapping(source = "id.idServicio", target="serviceId")
     })

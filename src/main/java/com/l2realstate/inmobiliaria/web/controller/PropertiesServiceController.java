@@ -4,6 +4,7 @@ package com.l2realstate.inmobiliaria.web.controller;
 import com.l2realstate.inmobiliaria.domain.PropertiesService;
 import com.l2realstate.inmobiliaria.domain.Service;
 import com.l2realstate.inmobiliaria.domain.service.PropertiesServiceService;
+import com.l2realstate.inmobiliaria.domain.service.ServiceService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.stream;
 
 @RestController
 @RequestMapping("/propertiesService")
@@ -22,6 +26,8 @@ public class PropertiesServiceController {
 
     @Autowired
     PropertiesServiceService propertiesServiceService;
+    @Autowired
+    private ServiceService serviceService;
 
     @GetMapping("/getAllPropertiesServices")
     @io.swagger.v3.oas.annotations.Operation(summary = "To get All Property-Service relations", description = "It gets all Property-Service relations")
@@ -40,15 +46,19 @@ public class PropertiesServiceController {
     @Operation(summary = "To get a Property-Service Relation", description = "To get a Property-Service Relation")
     @ApiResponse(responseCode = "200", description = "Ok, Information Found")
     @ApiResponse(responseCode = "404", description = "Error, information not found")
-    public ResponseEntity<List<Integer>> getAllServicesByProperty(@Parameter(description = "Receives the id of the Property-Service Relation to search")@PathVariable int propertyId){
+    public ResponseEntity<List<Service>> getAllServicesByProperty(@Parameter(description = "Receives the id of the Property-Service Relation to search")@PathVariable int propertyId){
 
-        if(propertiesServiceService.getServicesByProperty(propertyId).isPresent()){
-            List<Integer> resultado = propertiesServiceService.getServicesByProperty(propertyId).get();
-            if (resultado.isEmpty()){
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }else{
-                return new ResponseEntity<>(resultado, HttpStatus.OK);
-            }
+        Optional<List<Integer>> optionalServiceIds = propertiesServiceService.getServicesByProperty(propertyId);
+
+        if(optionalServiceIds.isPresent() && !optionalServiceIds.get().isEmpty()){
+
+                List<Service> servicios = optionalServiceIds.get().stream()
+                        .map(serviceId -> serviceService.getServiceById(serviceId))
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .collect(Collectors.toList());
+
+            return ResponseEntity.ok(servicios);
         }else{
 
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

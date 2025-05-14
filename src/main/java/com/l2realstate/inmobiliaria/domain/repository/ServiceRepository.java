@@ -12,7 +12,6 @@ public interface ServiceRepository {
     public Optional<Service> getServiceById(int serviceId);
 
 
-
     public Service saveService(Service service);
 
     public void deleteService(int serviceId);

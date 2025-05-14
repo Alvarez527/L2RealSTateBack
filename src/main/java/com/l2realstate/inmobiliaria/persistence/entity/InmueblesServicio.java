@@ -9,9 +9,6 @@ public class InmueblesServicio {
     @EmbeddedId
     private InmueblesServicioPK id;
 
-    @Column(name="descripcion_servicio")
-    private String descripcionServicio;
-
 
     @ManyToOne
     @JoinColumn(name = "id_inmueble", insertable = false, updatable = false)
@@ -29,17 +26,7 @@ public class InmueblesServicio {
         this.id = id;
     }
 
-    public String getDescripcionServicio() {
-        return descripcionServicio;
-    }
 
-    public void setDescripcionServicio(String descripcionServicio) {
-        this.descripcionServicio = descripcionServicio;
-    }
-
-    public Inmueble getInmueble() {
-        return inmueble;
-    }
 
     public void setInmueble(Inmueble inmueble) {
         this.inmueble = inmueble;

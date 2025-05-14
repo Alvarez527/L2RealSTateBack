@@ -23,11 +23,15 @@ public class Inmueble {
 
     private Integer cuartos;
 
+
     private Integer banos;
+
 
     private Integer mediobanos;
 
+
     private Integer estacionamientos;
+
 
     private String descripcion;
 

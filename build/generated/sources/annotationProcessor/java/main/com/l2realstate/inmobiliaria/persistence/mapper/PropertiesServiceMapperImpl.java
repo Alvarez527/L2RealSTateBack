@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-14T09:04:03-0600",
+    date = "2025-05-14T13:08:29-0600",
     comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.8.jar, environment: Java 17.0.11 (Amazon.com Inc.)"
 )
 @Component
@@ -24,7 +24,6 @@ public class PropertiesServiceMapperImpl implements PropertiesServiceMapper {
 
         PropertiesService propertiesService = new PropertiesService();
 
-        propertiesService.setServiceDescription( inmueblesServicio.getDescripcionServicio() );
         Integer idInmueble = inmueblesServicioIdIdInmueble( inmueblesServicio );
         if ( idInmueble != null ) {
             propertiesService.setPropertyId( idInmueble );
@@ -60,7 +59,6 @@ public class PropertiesServiceMapperImpl implements PropertiesServiceMapper {
         InmueblesServicio inmueblesServicio = new InmueblesServicio();
 
         inmueblesServicio.setId( propertiesServiceToInmueblesServicioPK( propertiesService ) );
-        inmueblesServicio.setDescripcionServicio( propertiesService.getServiceDescription() );
 
         return inmueblesServicio;
     }
